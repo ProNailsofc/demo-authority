@@ -12,7 +12,8 @@
         :root {
             --bg: #0F0F0F;          /* Fundo Preto */
             --card-bg: #1A1A1A;     /* Fundo dos Cards */
-            --brand: #D4AF37;       /* DOURADO (Mude aqui a cor da cliente) */
+            --brand: #D4AF37;       /* DOURADO (Padrão) - Mude aqui a cor da cliente */
+            --brand-light: #F3E5AB;
             --text-main: #F5F5F5;   /* Texto Claro */
             --text-muted: #888;
         }
@@ -29,14 +30,52 @@
 
         /* HERO TRAVADO (TEXTO ESQUERDA) */
         .hero { position: relative; width: 100%; height: 100dvh; overflow: hidden; display: flex; align-items: center; }
-        .hero-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('hero_bg.jpg'); background-size: cover; background-position: center; filter: brightness(0.4); z-index: 1; }
-        .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(90deg, #000 10%, rgba(0,0,0,0.5) 60%, transparent 100%); z-index: 2; }
         
-        .hero-content { position: relative; z-index: 10; padding-left: 25px; width: 80%; text-align: left; }
-        .hero-subtitle { color: var(--brand); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 3px; font-weight: 800; margin-bottom: 5px; display: block; }
-        .hero-title { font-family: 'Playfair Display', serif; font-size: 4rem; line-height: 0.9; color: #fff; margin-bottom: 20px; text-shadow: 0 4px 15px rgba(0,0,0,0.8); }
+        .hero-bg { 
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+            background-image: url('hero_bg.jpg'); 
+            background-size: cover; background-position: center; 
+            filter: brightness(0.4); z-index: 1; 
+        }
         
-        .badge { background: rgba(30, 30, 30, 0.8); border-left: 3px solid var(--brand); color: #eee; padding: 8px 18px; border-radius: 4px; font-size: 0.8rem; backdrop-filter: blur(5px); display: inline-flex; align-items: center; gap: 8px; margin-bottom: 10px; margin-right: 5px; }
+        .hero-overlay { 
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+            background: linear-gradient(90deg, #000 10%, rgba(0,0,0,0.5) 60%, transparent 100%); 
+            z-index: 2; 
+        }
+        
+        .hero-content { 
+            position: relative; z-index: 10; padding-left: 25px; width: 80%; text-align: left; 
+        }
+        
+        .hero-subtitle { 
+            color: var(--brand); font-size: 0.8rem; text-transform: uppercase; 
+            letter-spacing: 3px; font-weight: 800; margin-bottom: 5px; display: block; 
+        }
+        
+        .hero-title { 
+            font-family: 'Playfair Display', serif; font-size: 4rem; line-height: 0.9; 
+            color: #fff; margin-bottom: 20px; text-shadow: 0 4px 15px rgba(0,0,0,0.8); 
+        }
+        
+        /* CORREÇÃO DOS BADGES (AGORA SÃO PÍLULAS) */
+        .badges-container {
+            display: flex; flex-direction: column; gap: 10px; align-items: flex-start;
+        }
+
+        .badge { 
+            background: rgba(30, 30, 30, 0.8); 
+            border-left: 3px solid var(--brand); 
+            color: #eee; 
+            padding: 8px 18px; 
+            border-radius: 4px; 
+            font-size: 0.8rem; 
+            backdrop-filter: blur(5px); 
+            display: inline-flex; /* Garante que fique do tamanho do texto */
+            width: fit-content;   /* Garante que não estique */
+            align-items: center; 
+            gap: 8px; 
+        }
 
         /* CARROSSEL */
         .vitrine-section { padding: 40px 0; background: var(--bg); border-bottom: 1px solid #222; overflow: hidden; }
@@ -46,7 +85,7 @@
         .carousel-item { width: 160px; height: 220px; border-radius: 8px; overflow: hidden; border: 1px solid #333; flex-shrink: 0; }
         .carousel-item img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* ANTES E DEPOIS */
+        /* ANTES E DEPOIS (RESTAURADO 2 LINHAS) */
         .transformation-section { padding: 40px 20px; background: #141414; text-align: center; }
         .transform-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
         .t-card { position: relative; }
@@ -76,7 +115,8 @@
         
         .btn-submit {
             width: 100%; padding: 20px; border-radius: 50px; border: none;
-            background: var(--brand); color: #000; font-weight: 800; text-transform: uppercase; cursor: pointer;
+            background: linear-gradient(135deg, var(--brand) 0%, var(--brand-light) 100%);
+            color: #000; font-weight: 800; text-transform: uppercase; cursor: pointer;
         }
 
         .map-section { margin-top: 40px; }
@@ -97,20 +137,23 @@
 </head>
 <body>
 
+    <!-- HERO -->
     <header class="hero">
         <div class="hero-bg"></div>
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <span class="hero-subtitle">Nail Designer</span>
-            <h1 class="hero-title">Nome<br>Profissional</h1> <!-- EDITE O NOME -->
-            <div style="display:flex; flex-direction:column; gap:10px;">
-                <div class="badge">📍 Sua Cidade - Bairro</div> <!-- EDITE O LOCAL -->
+            <h1 class="hero-title">Nome<br>Profissional</h1> <!-- TROCAR NOME -->
+            
+            <div class="badges-container">
+                <div class="badge">📍 Sua Cidade - Bairro</div> <!-- TROCAR -->
                 <div class="badge">✨ Especialista em Fibra</div>
                 <div class="badge">📅 Agenda Aberta</div>
             </div>
         </div>
     </header>
 
+    <!-- CARROSSEL -->
     <section class="vitrine-section">
         <div class="section-header"><h2>Portfólio</h2></div>
         <div class="carousel-track">
@@ -127,15 +170,22 @@
         </div>
     </section>
 
-    <!-- ANTES E DEPOIS (Só se tiver fotos, senão apague essa section) -->
+    <!-- ANTES E DEPOIS (RESTAURADO: 2 LINHAS) -->
     <section class="transformation-section">
         <div class="section-header"><h2>Resultados Reais</h2></div>
+        <!-- PAR 1 -->
         <div class="transform-grid">
             <div class="t-card"><img src="antes1.jpg" class="t-img"><div class="t-badge">Antes</div></div>
             <div class="t-card"><img src="depois1.jpg" class="t-img"><div class="t-badge after">Depois</div></div>
         </div>
+        <!-- PAR 2 -->
+        <div class="transform-grid">
+            <div class="t-card"><img src="antes2.jpg" class="t-img"><div class="t-badge">Antes</div></div>
+            <div class="t-card"><img src="depois2.jpg" class="t-img"><div class="t-badge after">Depois</div></div>
+        </div>
     </section>
 
+    <!-- AGENDAMENTO -->
     <section class="booking-section">
         <div class="section-header"><h2>Agendamento</h2><p style="color:#888; font-size:0.8rem">SELECIONE O PROCEDIMENTO</p></div>
         
@@ -147,12 +197,12 @@
                 <div><label>Data</label><input type="date" id="cDate" onchange="updateTimeSlots()"></div>
                 <div><label>Horário</label><select id="cTime"><option value="">Selecione...</option></select></div>
             </div>
-            <button class="btn-submit" onclick="openModal()">Verificar Disponibilidade</button>
+            <button class="btn-submit" onclick="sendZap()">Verificar Disponibilidade</button>
         </div>
 
         <div class="map-section">
-            <!-- COLOQUE O IFRAME DO GOOGLE MAPS DA CLIENTE AQUI -->
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.835434509374!2d144.9537353153167!3d-37.817323442021134!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjfCsDM4JzI5LjkiUyA0OMKwNDAnNDQuMiJX!5e0!3m2!1spt-BR!2sbr" allowfullscreen="" loading="lazy"></iframe>
+            <!-- INSIRA O IFRAME DO MAPA AQUI -->
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.835434509374!2d144.9537353153167!3d-37.817323442021134!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf577d3a0e6bdf2de!2sMelbourne%20VIC%2C%20Australia!5e0!3m2!1sen!2sus!4v1633074471643!5m2!1sen!2sus" allowfullscreen="" loading="lazy"></iframe>
         </div>
     </section>
 
@@ -238,7 +288,7 @@
             }
         }
 
-        function openModal() {
+        function sendZap() {
             const n = document.getElementById('cName').value;
             const d = document.getElementById('cDate').value;
             const t = document.getElementById('cTime').value;
