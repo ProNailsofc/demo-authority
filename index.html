@@ -5,15 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Agendamento | Authority</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Manrope:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400&family=Manrope:wght@300;500;700;800&display=swap" rel="stylesheet">
     
     <style>
         /* --- CONFIGURAÇÃO AUTHORITY (DARK) --- */
         :root {
             --bg: #0F0F0F;          /* Fundo Preto */
             --card-bg: #1A1A1A;     /* Fundo dos Cards */
-            --brand: #D4AF37;       /* Dourado (Padrão) - Mude aqui a cor da cliente */
-            --brand-light: #F3E5AB;
+            --brand: #D4AF37;       /* DOURADO (Mude aqui a cor da cliente) */
             --text-main: #F5F5F5;   /* Texto Claro */
             --text-muted: #888;
         }
@@ -35,14 +34,14 @@
         
         .hero-content { position: relative; z-index: 10; padding-left: 25px; width: 80%; text-align: left; }
         .hero-subtitle { color: var(--brand); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 3px; font-weight: 800; margin-bottom: 5px; display: block; }
-        .hero-title { font-family: 'Italiana', serif; font-size: 4rem; line-height: 0.9; color: #fff; margin-bottom: 20px; text-shadow: 0 4px 15px rgba(0,0,0,0.8); }
+        .hero-title { font-family: 'Playfair Display', serif; font-size: 4rem; line-height: 0.9; color: #fff; margin-bottom: 20px; text-shadow: 0 4px 15px rgba(0,0,0,0.8); }
         
         .badge { background: rgba(30, 30, 30, 0.8); border-left: 3px solid var(--brand); color: #eee; padding: 8px 18px; border-radius: 4px; font-size: 0.8rem; backdrop-filter: blur(5px); display: inline-flex; align-items: center; gap: 8px; margin-bottom: 10px; margin-right: 5px; }
 
         /* CARROSSEL */
         .vitrine-section { padding: 40px 0; background: var(--bg); border-bottom: 1px solid #222; overflow: hidden; }
         .section-header { text-align: center; margin-bottom: 30px; }
-        .section-header h2 { font-family: 'Italiana', serif; font-size: 2rem; color: var(--brand); }
+        .section-header h2 { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--brand); }
         .carousel-track { display: flex; gap: 10px; width: max-content; animation: scroll 20s linear infinite; }
         .carousel-item { width: 160px; height: 220px; border-radius: 8px; overflow: hidden; border: 1px solid #333; flex-shrink: 0; }
         .carousel-item img { width: 100%; height: 100%; object-fit: cover; }
@@ -54,21 +53,21 @@
         .t-img { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 8px; border: 1px solid #333; }
         .t-badge { position: absolute; bottom: 5px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.8); color: var(--brand); font-size: 0.7rem; padding: 2px 8px; border-radius: 10px; text-transform: uppercase; font-weight: bold; }
 
-        /* SERVIÇOS (CLEAN) */
+        /* SERVIÇOS (CLEAN - SEM FOTO) */
         .booking-section { padding: 40px 20px; max-width: 600px; margin: 0 auto; }
         .service-list { display: flex; flex-direction: column; gap: 10px; }
         
         .service-card {
             background: var(--card-bg); border: 1px solid #333; padding: 18px 20px;
             border-radius: 12px; display: flex; justify-content: space-between; align-items: center;
-            cursor: pointer; transition: 0.2s;
+            cursor: pointer; transition: 0.2s; box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
         .service-card:hover { transform: translateY(-2px); border-color: #555; }
-        .service-card.selected { border-color: var(--brand); background: rgba(212, 175, 55, 0.1); }
+        .service-card.selected { border-color: var(--brand); background: rgba(255, 255, 255, 0.05); }
         
-        .s-info h3 { font-size: 1rem; font-weight: 600; color: #fff; margin-bottom: 4px; }
-        .s-info p { font-size: 0.75rem; color: var(--muted); }
-        .s-price { font-family: 'Manrope', serif; font-size: 1.2rem; font-weight: 800; color: var(--brand); }
+        .s-info h3 { font-size: 1rem; font-weight: 600; color: #fff; margin-bottom: 4px; text-transform: uppercase; }
+        .s-info p { font-size: 0.75rem; color: var(--muted); display:flex; align-items:center; gap:5px;}
+        .s-price { font-family: 'Manrope', serif; font-size: 1.2rem; font-weight: 800; color: var(--brand); white-space: nowrap; }
 
         /* FORMULÁRIO */
         .form-area { margin-top: 30px; background: #121212; padding: 25px; border-radius: 20px; border: 1px solid #222; }
@@ -77,35 +76,41 @@
         
         .btn-submit {
             width: 100%; padding: 20px; border-radius: 50px; border: none;
-            background: linear-gradient(135deg, var(--brand) 0%, var(--brand-light) 100%);
-            color: #000; font-weight: 800; text-transform: uppercase; cursor: pointer;
+            background: var(--brand); color: #000; font-weight: 800; text-transform: uppercase; cursor: pointer;
         }
 
         .map-section { margin-top: 40px; }
         iframe { width: 100%; height: 250px; border: none; border-radius: 15px; filter: grayscale(100%) invert(92%) contrast(83%); } /* Mapa Dark */
 
         .footer { text-align: center; padding: 40px; color: #444; font-size: 0.7rem; }
+        
+        /* MODAL */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); z-index: 9999; display: none; justify-content: center; align-items: center; backdrop-filter: blur(5px); }
+        .modal-box { background: #FFF; width: 90%; max-width: 380px; padding: 30px 25px; border-radius: 20px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.5); animation: appear 0.3s ease-out; color: #333; }
+        .modal-title { font-family: 'Playfair Display'; font-size: 1.5rem; color: #000; margin-bottom: 15px; }
+        .btn-confirm { width: 100%; padding: 15px; border-radius: 50px; border: none; background: var(--brand); color: #FFF; font-weight: 800; text-transform: uppercase; cursor: pointer; margin-bottom: 10px;}
+        .btn-cancel { background: transparent; border: 1px solid #CCC; width: 100%; padding: 12px; border-radius: 50px; color: #888; font-weight: 600; cursor: pointer; text-transform: uppercase; }
+
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        @keyframes appear { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
 
-    <!-- HERO -->
     <header class="hero">
         <div class="hero-bg"></div>
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <span class="hero-subtitle">Nail Designer</span>
-            <h1 class="hero-title">Nome<br>Profissional</h1> <!-- TROCAR NOME -->
-            <div class="badges-container">
-                <div class="badge">📍 Sua Cidade</div> <!-- TROCAR -->
+            <h1 class="hero-title">Nome<br>Profissional</h1> <!-- EDITE O NOME -->
+            <div style="display:flex; flex-direction:column; gap:10px;">
+                <div class="badge">📍 Sua Cidade - Bairro</div> <!-- EDITE O LOCAL -->
                 <div class="badge">✨ Especialista em Fibra</div>
                 <div class="badge">📅 Agenda Aberta</div>
             </div>
         </div>
     </header>
 
-    <!-- CARROSSEL -->
     <section class="vitrine-section">
         <div class="section-header"><h2>Portfólio</h2></div>
         <div class="carousel-track">
@@ -122,20 +127,15 @@
         </div>
     </section>
 
-    <!-- ANTES E DEPOIS -->
+    <!-- ANTES E DEPOIS (Só se tiver fotos, senão apague essa section) -->
     <section class="transformation-section">
         <div class="section-header"><h2>Resultados Reais</h2></div>
         <div class="transform-grid">
             <div class="t-card"><img src="antes1.jpg" class="t-img"><div class="t-badge">Antes</div></div>
             <div class="t-card"><img src="depois1.jpg" class="t-img"><div class="t-badge after">Depois</div></div>
         </div>
-        <div class="transform-grid">
-            <div class="t-card"><img src="antes2.jpg" class="t-img"><div class="t-badge">Antes</div></div>
-            <div class="t-card"><img src="depois2.jpg" class="t-img"><div class="t-badge after">Depois</div></div>
-        </div>
     </section>
 
-    <!-- AGENDAMENTO -->
     <section class="booking-section">
         <div class="section-header"><h2>Agendamento</h2><p style="color:#888; font-size:0.8rem">SELECIONE O PROCEDIMENTO</p></div>
         
@@ -147,36 +147,56 @@
                 <div><label>Data</label><input type="date" id="cDate" onchange="updateTimeSlots()"></div>
                 <div><label>Horário</label><select id="cTime"><option value="">Selecione...</option></select></div>
             </div>
-            <button class="btn-submit" onclick="sendZap()">Verificar Disponibilidade</button>
+            <button class="btn-submit" onclick="openModal()">Verificar Disponibilidade</button>
         </div>
 
         <div class="map-section">
-            <!-- INSIRA O IFRAME DO MAPA AQUI -->
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.835434509374!2d144.9537353153167!3d-37.817323442021134!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf577d3a0e6bdf2de!2sMelbourne%20VIC%2C%20Australia!5e0!3m2!1sen!2sus!4v1633074471643!5m2!1sen!2sus" allowfullscreen="" loading="lazy"></iframe>
+            <!-- COLOQUE O IFRAME DO GOOGLE MAPS DA CLIENTE AQUI -->
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.835434509374!2d144.9537353153167!3d-37.817323442021134!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjfCsDM4JzI5LjkiUyA0OMKwNDAnNDQuMiJX!5e0!3m2!1spt-BR!2sbr" allowfullscreen="" loading="lazy"></iframe>
         </div>
     </section>
 
     <div class="footer">© 2026 Tecnologia <span style="color:var(--brand)">Migre Agora</span></div>
 
+    <!-- MODAL CONFIRMAÇÃO -->
+    <div id="modalOverlay" class="modal-overlay">
+        <div class="modal-box">
+            <h3 class="modal-title">✨ Quase lá!</h3>
+            <p id="modalResumo" style="color:#666; font-size:0.9rem; margin-bottom:15px;"></p>
+            <p class="modal-text" style="font-size:0.85rem; line-height:1.5;">
+                Ao confirmar, você será redirecionada para o WhatsApp para <strong>verificar a disponibilidade</strong> na agenda oficial.
+            </p>
+            <!-- AVISO DE TAXA (DESCOMENTE SE A CLIENTE COBRAR) -->
+            <!-- <p style="font-size:0.8rem; color:var(--brand); font-weight:bold; margin: 10px 0;">*Trabalhamos com sinal de 50% para reserva.</p> -->
+            <div style="margin-top: 20px; display: flex; flex-direction: column; gap: 10px;">
+                <button class="btn-confirm" onclick="confirmZap()">Confirmar e Enviar</button>
+                <button class="btn-cancel" onclick="closeModal()">Voltar / Editar</button>
+            </div>
+        </div>
+    </div>
+
     <script>
-        const WHATSAPP = "5548999999999"; // TROCAR
+        const WHATSAPP = "5548999999999"; // TROCAR PELO ZAP DA CLIENTE
         const OPEN_HOUR = 8;
         const CLOSE_HOUR = 20;
 
-        // --- LISTA MESTRE (APAGUE O QUE NÃO USAR) ---
+        // --- LISTA MESTRE DE SERVIÇOS ---
         const services = [
             { id: 1, name: "Aplicação Fibra de Vidro", price: 160, time: "3h" },
             { id: 2, name: "Aplicação Molde F1", price: 160, time: "2h30" },
-            { id: 3, name: "Manutenção Fibra", price: 100, time: "2h" },
-            { id: 4, name: "Manutenção (Outra Prof.)", price: 120, time: "2h30" },
-            { id: 5, name: "Banho de Gel", price: 90, time: "1h30" },
-            { id: 6, name: "Esmaltação em Gel", price: 70, time: "1h" },
-            { id: 7, name: "Blindagem", price: 60, time: "1h" },
-            { id: 8, name: "Mão Tradicional", price: 35, time: "40min" },
-            { id: 9, name: "Pé Tradicional", price: 45, time: "40min" },
-            { id: 10, name: "Pé e Mão Tradicional", price: 75, time: "1h30" },
-            { id: 11, name: "Reposição (Unidade)", price: 15, time: "20min" },
-            { id: 12, name: "Remoção", price: 50, time: "40min" }
+            { id: 3, name: "Aplicação Gel na Tips", price: 140, time: "2h30" },
+            { id: 4, name: "Manutenção de Fibra/Gel", price: 100, time: "2h" },
+            { id: 5, name: "Manutenção (Outra Profissional)", price: 120, time: "2h30" },
+            { id: 6, name: "Banho de Gel (Blindagem)", price: 90, time: "1h30" },
+            { id: 7, name: "Esmaltação em Gel", price: 70, time: "1h" },
+            { id: 8, name: "Decoração / Encapsulada (Par)", price: 20, time: "+30min" },
+            { id: 9, name: "Francesinha (Adicional)", price: 15, time: "+15min" },
+            { id: 10, name: "Mão Tradicional (Cutilagem)", price: 35, time: "40min" },
+            { id: 11, name: "Pé Tradicional (Cutilagem)", price: 45, time: "40min" },
+            { id: 12, name: "Pé e Mão Tradicional", price: 75, time: "1h30" },
+            { id: 13, name: "Reposição de Unha (Unidade)", price: 15, time: "20min" },
+            { id: 14, name: "Remoção de Alongamento", price: 50, time: "40min" },
+            { id: 15, name: "Spa dos Pés", price: 60, time: "1h" }
         ];
 
         let selServ = null;
@@ -187,17 +207,17 @@
             
             const list = document.getElementById('serviceList');
             list.innerHTML = services.map(s => `
-                <div class="service-card" onclick="select(this, ${s.id})">
+                <div class="service-card" onclick="select(this, '${s.name}')">
                     <div class="s-info"><h3>${s.name}</h3><p>⏱ ${s.time}</p></div>
                     <div class="s-price">R$ ${s.price}</div>
                 </div>
             `).join('');
         };
 
-        function select(el, id) {
+        function select(el, name) {
             document.querySelectorAll('.service-card').forEach(c => c.classList.remove('selected'));
             el.classList.add('selected');
-            selServ = services.find(s => s.id === id);
+            selServ = name;
             updateTimeSlots();
         }
 
@@ -218,17 +238,32 @@
             }
         }
 
-        function sendZap() {
+        function openModal() {
             const n = document.getElementById('cName').value;
             const d = document.getElementById('cDate').value;
             const t = document.getElementById('cTime').value;
             
-            if(!selServ || !n || !d || !t) { alert('Preencha tudo!'); return; }
+            if(!selServ || !n || !d || !t) { alert('Preencha tudo! ✨'); return; }
+
+            document.getElementById('modalResumo').innerHTML = `
+                <strong>Cliente:</strong> ${n}<br>
+                <strong>Serviço:</strong> ${selServ}<br>
+                <strong>Data:</strong> ${d.split('-').reverse().join('/')} às ${t}
+            `;
+            document.getElementById('modalOverlay').style.display = 'flex';
+        }
+
+        function closeModal() { document.getElementById('modalOverlay').style.display = 'none'; }
+
+        function confirmZap() {
+            const n = document.getElementById('cName').value;
+            const d = document.getElementById('cDate').value;
+            const t = document.getElementById('cTime').value;
+            const dStr = d.split('-').reverse().join('/');
             
-            const dStr = new Date(d + 'T00:00:00').toLocaleDateString('pt-BR');
-            const msg = `Olá! ✨\nMe chamo *${n}*.\nQuero agendar: *${selServ.name}* (R$ ${selServ.price})\n📅 Data: *${dStr}*\n⏰ Horário: *${t}*\n\nGostaria de verificar disponibilidade!`;
-            
+            const msg = `Olá! ✨\nMe chamo *${n}*.\n\nGostaria de verificar disponibilidade para:\n💅 *${selServ}*\n📅 Data: *${dStr}*\n⏰ Horário: *${t}*\n\nAguardo confirmação!`;
             window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`);
+            closeModal();
         }
     </script>
 </body>
